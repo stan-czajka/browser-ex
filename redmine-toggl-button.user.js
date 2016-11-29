@@ -70,7 +70,6 @@ function startEntry() {
       console.log('RedmineTogglButton: POST ' + url + ' response');
       console.log(response);
       try {
-        changeButton();
       }
       catch (err) {
         console.log('RedmineTogglButton: POST ' + url + ' error ' + err.message);
