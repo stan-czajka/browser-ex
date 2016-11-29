@@ -3,11 +3,14 @@
 // @namespace   RedmineTogglButton
 // @description Przycisk do włączania kontekstu zadania z redmine na toggl
 // @match     http://redmine.office.local/issues/*
-// @version     0.0.1
+// @version     0.0.2
 // @license     cannot use
 // @grant       GM_xmlhttpRequest
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js
 // ==/UserScript==
+
+// 0.0.1 - prototyp
+// 0.0.2 - poprawka logiwania przez API Key
 
 console.log('RedmineTogglButton: init');
 
@@ -51,14 +54,17 @@ function startEntry() {
   console.log('RedmineTogglButton: startEntry:');
   console.log(start_request);
   
+  var basic_auth = "Basic " + btoa(toggl_api_key + ":" + "api_token");
+  
   GM_xmlhttpRequest({
     method: "POST",
     url: url,
-    user: toggl_api_key,
-    password: 'api_token',
+    //user: toggl_api_key,
+    //password: 'api_token',
     data: JSON.stringify(start_request),
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": basic_auth
     },
     onload: function(response) {
       console.log('RedmineTogglButton: POST ' + url + ' response');
