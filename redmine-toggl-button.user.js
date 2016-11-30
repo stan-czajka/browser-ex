@@ -3,7 +3,7 @@
 // @namespace   RedmineTogglButton
 // @description Przycisk do włączania kontekstu zadania z redmine na toggl
 // @match     http://redmine.office.local/issues/*
-// @version     0.0.2
+// @version     0.0.4
 // @license     cannot use
 // @grant       GM_xmlhttpRequest
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js
@@ -11,6 +11,8 @@
 
 // 0.0.1 - prototyp
 // 0.0.2 - poprawka logiwania przez API Key
+// 0.0.3 - dodanie notifications zamiast disabled
+// 0.0.4 - dodanie mapowania nazw projektów
 
 console.log('RedmineTogglButton: init');
 
@@ -23,6 +25,7 @@ var start_button_id='toggl-start';
 var start_input_id='toggl-comment';
 
 // mapowanie nazwy projektu z redmine na jego ID w toggl
+// https://www.toggl.com/api/v8/workspaces/{workspace_id}/projects
 var projects = {
   // do uzupełnienia
 };
