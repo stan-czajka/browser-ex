@@ -38,6 +38,31 @@ function stopEntry() {
   
 }
 
+function notify(msg) {
+    var options = {
+        icon: "http://blog.toggl.com/wp-content/uploads/2015/04/toggl-button-light.png"
+    };
+
+ if (!("Notification" in window)) {
+    alert("Ta przeglądarka nie obsługuje powiadomień");
+  }
+  // Sprawdźmy czy uprawnienia dla powiadomienia zostały nadane
+  else if (Notification.permission === "granted") {
+    // jeżeli są tworzymy powiadomienie
+    var notification = new Notification(msg, options);
+  }
+
+  // W innym przypadku tworzymy zapytanie o uprawnienia
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      //Jeżeli użytkownik zaakceptuje tworzymy powiadomienie
+      if (permission === "granted") {
+        var notification = new Notification(msg, options);
+      }
+    });
+  }
+}
+
 function startEntry() {
   var url =  toggl_api + 'time_entries/start';
   
@@ -78,7 +103,7 @@ function startEntry() {
       console.log('RedmineTogglButton: POST ' + url + ' response');
       console.log(response);
       try {
-        changeButton();
+          notify("Wysłano do toggl");
       }
       catch (err) {
         console.log('RedmineTogglButton: POST ' + url + ' error ' + err.message);
