@@ -22,6 +22,11 @@ var toggl_api = 'https://www.toggl.com/api/v8/'
 var start_button_id='toggl-start';
 var start_input_id='toggl-comment';
 
+// mapowanie nazwy projektu z redmine na jego ID w toggl
+var projects = {
+  // do uzupełnienia
+};
+
 function changeButton() {
   $('#' + start_input_id).prop('disabled', true);
   $('#' + start_button_id).unbind( "click" ).click(function(e) {
@@ -39,6 +44,8 @@ function startEntry() {
   var now = new Date(); //without params it defaults to "now"
   var start_time = now.toJSON();
     
+  var project = $('.current-project').text();
+
   var start_request = 
     {
       "time_entry":
@@ -47,7 +54,8 @@ function startEntry() {
         "description":$('#' + start_input_id).val(),
         //"tags":[""],
         "wid":toggl_workspace_id,
-        "created_with":"RedmineTogglButton"
+        "created_with":"RedmineTogglButton",
+        "pid": projects[project]
       }
     };
   

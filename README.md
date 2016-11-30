@@ -15,4 +15,10 @@ Konfiguracja:
 var toggl_api_key = 'x'; // DO UZUPEŁNIENIA
 var toggl_workspace_id = 1; // DO UZUPEŁNIENIA
 ```
-- wartości można znaleźć w https://www.toggl.com/api/v8/me
+wartości można znaleźć w https://www.toggl.com/api/v8/me
+- opcjonalnie ustawić mapowanie projektów redmine &raquo; toggl (zmienna `projects`), np.
+```
+var projects = {
+	'MyProject': 12345
+};
+```
