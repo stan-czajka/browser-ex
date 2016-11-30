@@ -22,3 +22,4 @@ var projects = {
 	'MyProject': 12345
 };
 ```
+Id projektów można pobrać przez link: https://www.toggl.com/api/v8/workspaces/{workspace_id}/projects
